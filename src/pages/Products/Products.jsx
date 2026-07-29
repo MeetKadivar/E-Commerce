@@ -4,8 +4,8 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 
 function Products() {
   const [productList , setProductList] = useState([]);
-  const [loading , setLoading] = useState(false);
-  const [error , setError] = useState(false);
+  const [loading , setLoading] = useState(true);
+  const [error , setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +14,7 @@ function Products() {
         const data = await getProducts();
         setProductList(data);
       } catch (err) {
-        setError(true);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -27,7 +27,7 @@ function Products() {
   }
 
   if(error){
-    return <p>Erro while loading data....</p>
+    return <p>{error}</p>
   }
   return (
     <div>
