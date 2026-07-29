@@ -27,13 +27,15 @@ function Products() {
   }
 
   if(error){
-    return <p>{error}</p>
+    return <p>Something went wrong. Please try again.</p>
   }
   return (
     <div>
-        {productList.map((el) => {
+        {productList.length > 0 ? productList.map((el) => {
           return <ProductCard key={el.id} data={el}></ProductCard>
-        })}
+        }):
+          <p>No products available.</p>
+        }
     </div>
   )
 }
