@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { getProductDetail } from "../../services/product-service";
+import { useCart } from "../../hooks/useCart";
 
 function ProductDetail() {
   const param = useParams()
   const [data , setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { addToCart } = useCart();
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -21,7 +23,7 @@ function ProductDetail() {
     }
 
     fetchData()
-  },[param])
+  },[param.id])
 
   if(loading){
     return <p>Loading....</p>
@@ -29,6 +31,11 @@ function ProductDetail() {
 
   if(error){
     return <p>Something went wrong. Please try again.</p>
+  }
+
+  const handleAddToCart = (product) => {
+    // Add the product to the cart
+    addToCart(data);
   }
   return (
     <div>
@@ -44,7 +51,7 @@ function ProductDetail() {
       {data.rating.count} Reviews<br/>
       Description:<br/>
       {data.description}<br/>
-      <button>Add To Cart</button>
+      <button onClick={(data) => {handleAddToCart(data)}}>Add To Cart</button>
 
     </div>
   )
