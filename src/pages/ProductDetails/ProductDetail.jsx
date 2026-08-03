@@ -33,7 +33,7 @@ function ProductDetail() {
     return <p>Something went wrong. Please try again.</p>
   }
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = () => {
     // Add the product to the cart
     addToCart(data);
   }
@@ -51,7 +51,7 @@ function ProductDetail() {
       {data.rating.count} Reviews<br/>
       Description:<br/>
       {data.description}<br/>
-      <button onClick={handleAddToCart(data)}>Add To Cart</button>
+      <button onClick={handleAddToCart}>Add To Cart</button>
 
     </div>
   )
