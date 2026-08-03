@@ -51,7 +51,7 @@ function ProductDetail() {
       {data.rating.count} Reviews<br/>
       Description:<br/>
       {data.description}<br/>
-      <button onClick={(data) => {handleAddToCart(data)}}>Add To Cart</button>
+      <button onClick={handleAddToCart(data)}>Add To Cart</button>
 
     </div>
   )
