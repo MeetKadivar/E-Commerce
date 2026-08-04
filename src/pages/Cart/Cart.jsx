@@ -1,7 +1,7 @@
 
 import {useCart} from '../../hooks/useCart'
 function Cart() {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, addQuantity, removeQuantity } = useCart();
 
   return (
     <div>
@@ -12,8 +12,16 @@ function Cart() {
         <ul>
           {cartItems.map((item) => (
             <li key={item.id}>
-              <span>{item.title}</span>
-              <span>${item.price}</span>
+              <img src={item.image} alt={item.title} width="100" height="100" /><br/>
+              <span>{item.title}</span><br/>
+              <span>${item.price}</span><br/>
+              {item.qty > 0 && (
+                <>
+                  <button onClick={() => addQuantity(item.id)}>+</button>
+                  <span>Quantity: {item.qty}</span>
+                  <button onClick={() => removeQuantity(item.id)}>-</button>
+                </>
+              )}
               <button onClick={() => removeFromCart(item.id)}>Remove</button>
             </li>
           ))}
