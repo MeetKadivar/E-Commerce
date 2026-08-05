@@ -1,5 +1,6 @@
 
 import {useCart} from '../../hooks/useCart'
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
 function Cart() {
   const { cartItems, removeFromCart, addQuantity, removeQuantity } = useCart();
 
@@ -26,6 +27,10 @@ function Cart() {
             </li>
           ))}
         </ul>
+      )}
+
+      {cartItems.length > 0 && (
+        <OrderSummary />
       )}
     </div>
   )
