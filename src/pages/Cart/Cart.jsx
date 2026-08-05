@@ -18,9 +18,10 @@ function Cart() {
               <span>${item.price}</span><br/>
               {item.qty > 0 && (
                 <>
-                  <button onClick={() => addQuantity(item.id)}>+</button>
-                  <span>Quantity: {item.qty}</span>
-                  <button onClick={() => removeQuantity(item.id)}>-</button><br/>
+                  <button onClick={() => addQuantity(item.id)}>+</button>&nbsp;
+                  <span>Quantity: {item.qty}</span> &nbsp;
+                  <button onClick={() => removeQuantity(item.id)}>-</button>&nbsp;
+                  <button onClick={() => removeFromCart(item.id)}>Remove</button><br/>
                 </>
               )}
              <span>Total: ${(item.price * item.qty).toFixed(2)}</span><br/>
