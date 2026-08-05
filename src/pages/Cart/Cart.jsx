@@ -1,5 +1,6 @@
 
 import {useCart} from '../../hooks/useCart'
+import OrderSummary from '../../components/OrderSummary/OrderSummary';
 function Cart() {
   const { cartItems, removeFromCart, addQuantity, removeQuantity } = useCart();
 
@@ -17,15 +18,20 @@ function Cart() {
               <span>${item.price}</span><br/>
               {item.qty > 0 && (
                 <>
-                  <button onClick={() => addQuantity(item.id)}>+</button>
-                  <span>Quantity: {item.qty}</span>
-                  <button onClick={() => removeQuantity(item.id)}>-</button>
+                  <button onClick={() => addQuantity(item.id)}>+</button>&nbsp;
+                  <span>Quantity: {item.qty}</span> &nbsp;
+                  <button onClick={() => removeQuantity(item.id)}>-</button>&nbsp;
+                  <button onClick={() => removeFromCart(item.id)}>Remove</button><br/>
                 </>
               )}
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+             <span>Total: ${(item.price * item.qty).toFixed(2)}</span><br/>
             </li>
           ))}
         </ul>
+      )}
+
+      {cartItems.length > 0 && (
+        <OrderSummary />
       )}
     </div>
   )

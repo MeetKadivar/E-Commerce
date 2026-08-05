@@ -1,0 +1,21 @@
+.order-summary{
+    margin-top: 10px;
+}
+.order-summary-item{
+    margin-bottom: 20px;
+    width: 100%;
+}
+.order-summary-item span{
+    display: inline-block;
+    width:33%
+}
+.order-summary-total{
+    margin-top: 20px;
+    width: 100%;
+    text-align: right;
+}
+
+.order-summary-total span{
+    display: block;
+    width: 100%;
+}
