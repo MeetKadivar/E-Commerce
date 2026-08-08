@@ -6,22 +6,35 @@ import Cart from "./pages/Cart/Cart"
 import NotFound from "./pages/NotFound"
 import Layout from "./components/Layout/Layout"
 import CartProvider from "./context/CartProvider"
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
+import Profile from "./pages/Profile/Profile"
+import { AuthProvider } from "./context/AuthContext/AuthProvider"
+import Login from "./pages/Login/Login"
 
 function App() {
 
   return (
-    <CartProvider>
-      <Routes>
-        <Route path="/" element={<Layout />} >
-          <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/:id" element={<ProductDetail />} />
-          <Route path="cart" element={<Cart />} />
-        </Route>
-          <Route path="*" element={<NotFound />} />
-      </Routes>
+    <AuthProvider>
 
-    </CartProvider>
+      <CartProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Layout />} >
+            <Route index element={<Home />} />
+            <Route path="products" element={<Products />} />
+            <Route path="products/:id" element={<ProductDetail />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="profile" element={<ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+      </CartProvider>
+
+
+    </AuthProvider>
   )
 }
 
